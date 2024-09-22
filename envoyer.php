@@ -9,7 +9,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         exit;
     }
 
-    $to = "votre-email@example.com";
+    $to = "preudhommekillian@hotmail.com";
     $subject = "Message de Contact de Chill Pote";
     $body = "Nom: $nom\nEmail: $email\n\nMessage:\n$message";
 
