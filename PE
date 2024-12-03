@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Fiche d'exercice : Citoyen et Solidarité</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        h1 {
+            color: #333;
+            border-bottom: 2px solid #333;
+            padding-bottom: 10px;
+        }
+        h2 {
+            color: #666;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        table, th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <h1>Citoyen</h1>
+
+    <h2>1. Définition de « citoyen »</h2>
+    <p>Un citoyen est une personne qui appartient à une communauté politique, qui jouit de droits civiques et politiques, et qui a des devoirs envers cette communauté. En France, c'est une personne majeure, jouissant de ses droits civiques, qui participe à la vie démocratique par le vote et l'engagement civique.</p>
+
+    <h2>2. Conditions pour être citoyen Français</h2>
+    <ul>
+        <li>Être né français (par filiation ou par le droit du sol)</li>
+        <li>Acquérir la nationalité française par naturalisation</li>
+        <li>Être âgé d'au moins 18 ans</li>
+        <li>Jouir de ses droits civiques et politiques</li>
+        <li>Résider habituellement en France</li>
+    </ul>
+
+    <h2>3. Élections pour lesquelles les Citoyens Français votent</h2>
+    <table>
+        <tr>
+            <th>Nom de l'élection</th>
+            <th>Nom de la fonction de l'élu</th>
+            <th>Durée du mandat</th>
+            <th>Date de la prochaine élection</th>
+        </tr>
+        <tr>
+            <td>Élection Présidentielle</td>
+            <td>Président de la République</td>
+            <td>5 ans</td>
+            <td>2027</td>
+        </tr>
+        <tr>
+            <td>Élections Législatives</td>
+            <td>Députés</td>
+            <td>5 ans</td>
+            <td>2027</td>
+        </tr>
+        <tr>
+            <td>Élections Sénatoriales</td>
+            <td>Sénateurs</td>
+            <td>6 ans</td>
+            <td>Partiellement en 2026</td>
+        </tr>
+        <tr>
+            <td>Élections Municipales</td>
+            <td>Maire et Conseillers Municipaux</td>
+            <td>6 ans</td>
+            <td>2026</td>
+        </tr>
+    </table>
+
+    <h2>4. Conditions pour aller voter</h2>
+    <h3>Conditions matérielles :</h3>
+    <ul>
+        <li>Être inscrit sur les listes électorales</li>
+        <li>Avoir une pièce d'identité valide</li>
+        <li>Se rendre dans son bureau de vote</li>
+    </ul>
+    <h3>Conditions physiques :</h3>
+    <ul>
+        <li>Être majeur (18 ans)</li>
+        <li>Jouir de ses droits civiques</li>
+        <li>Être physiquement capable de se déplacer ou avoir un procuration</li>
+    </ul>
+
+    <h2>5. Texte garantissant les droits fondamentaux</h2>
+    <p>La Déclaration des droits de l'homme et du citoyen de 1789.</p>
+    <p>Premier article : « Les hommes naissent et demeurent libres et égaux en droits. »</p>
+
+    <h2>6. Symboles de la République Française</h2>
+    <ul>
+        <li>Le drapeau tricolore (bleu, blanc, rouge)
+            <p>Symbolise les valeurs de Liberté, Égalité, Fraternité</p>
+        </li>
+        <li>La Marseillaise (hymne national)
+            <p>Chant révolutionnaire représentant la lutte pour la liberté</p>
+        </li>
+        <li>Marianne
+            <p>Personnification de la République, représentant la liberté et la démocratie</p>
+        </li>
+    </ul>
+
+    <h2>7. Convention internationale des droits de l'enfant</h2>
+    <p>Texte adopté par l'ONU en 1989 définissant les droits fondamentaux des enfants.</p>
+    
+    <h3>4 Principes fondamentaux :</h3>
+    <ol>
+        <li>Non-discrimination : tous les enfants ont les mêmes droits</li>
+        <li>Intérêt supérieur de l'enfant : toute décision doit prioritairement servir l'intérêt de l'enfant</li>
+        <li>Droit à la vie, à la survie et au développement</li>
+        <li>Droit de participer et d'être écouté</li>
+    </ol>
+
+    <h1>Solidarité</h1>
+
+    <h2>1. Définition : Être solidaire</h2>
+    <p>Être solidaire signifie se soutenir mutuellement, partager des responsabilités et s'entraider dans des moments difficiles, en pensant au bien commun plutôt qu'à son intérêt personnel.</p>
+
+    <h2>2. Comment être solidaire</h2>
+    <h3>En famille :</h3>
+    <ul>
+        <li>S'entraider lors de tâches ménagères</li>
+        <li>Soutenir un membre de la famille en difficulté</li>
+        <li>Écouter et réconforter</li>
+    </ul>
+
+    <h3>Avec les amis :</h3>
+    <ul>
+        <li>Être à l'écoute</li>
+        <li>Aider aux devoirs</li>
+        <li>Soutenir moralement en cas de problème</li>
+    </ul>
+
+    <h3>À l'école :</h3>
+    <ul>
+        <li>Collaborer sur des projets de groupe</li>
+        <li>Aider un camarade en difficulté</li>
+        <li>Participer à des actions caritatives</li>
+    </ul>
+
+    <h2>3. L'association</h2>
+    <p>Une association est un regroupement de personnes partageant un but commun, qui travaillent ensemble de manière désintéressée. Contrairement à une entreprise qui a un but lucratif, une association cherche à réaliser un projet social, culturel ou humanitaire.</p>
+
+    <h2>4. Adhérer à une association</h2>
+    <p>Adhérer signifie devenir membre officiel d'une association, en payant généralement une cotisation et en s'engageant à respecter ses valeurs et ses objectifs.</p>
+
+    <h2>5. Tableau des associations</h2>
+    <table>
+        <tr>
+            <th></th>
+            <th>Locale</th>
+            <th>Nationale</th>
+            <th>Internationale</th>
+        </tr>
+        <tr>
+            <th>Nom de l'association</th>
+            <td>Secours Populaire Local</td>
+            <td>Croix-Rouge Française</td>
+            <td>Amnesty International</td>
+        </tr>
+        <tr>
+            <th>But, objectif</th>
+            <td>Aide alimentaire et sociale locale</td>
+            <td>Assistance humanitaire et secours d'urgence</td>
+            <td>Défense des droits humains</td>
+        </tr>
+        <tr>
+            <th>Nombre d'adhérents</th>
+            <td>50-100</td>
+            <td>58 000</td>
+            <td>Environ 7 millions mondiale</td>
+        </tr>
+        <tr>
+            <th>Date de création</th>
+            <td>Variable selon la commune</td>
+            <td>1864</td>
+            <td>1961</td>
+        </tr>
+    </table>
+
+    <h2>6. Participation associative</h2>
+    <p>Je souhaiterais adhérer à une association de protection de l'environnement comme Greenpeace, car je crois en l'importance de protéger notre planète et de sensibiliser le public aux enjeux écologiques. Contribuer à des actions concrètes pour préserver l'environnement me semble être une forme importante de solidarité.</p>
+</body>
+</html>
