@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jeu RNG</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+            box-sizing: border-box;
+        }
+        .container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0,0,0,0.1);
+        }
+        .stats {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 30px;
+            padding: 15px;
+            background-color: #ececec;
+            border-radius: 10px;
+            font-size: 1.2em;
+            font-weight: bold;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        .game-section {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+        .inventory {
+            margin-top: 30px;
+            padding: 20px;
+            background-color: #ececec;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        .inventory-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 15px;
+            padding: 15px;
+        }
+        .inventory-item {
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 10px;
+            background-color: white;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            transition: all 0.3s;
+        }
+        .inventory-item:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+        .common { color: #666; border-left: 4px solid #666; }
+        .rare { color: #0066cc; border-left: 4px solid #0066cc; }
+        .epic { color: #9933cc; border-left: 4px solid #9933cc; }
+        .mythic { color: #ff9900; border-left: 4px solid #ff9900; }
+        .legendary { color: #ffaa00; border-left: 4px solid #ffaa00; }
+        .divine { color: #ff0000; border-left: 4px solid #ff0000; }
+        .celestial { color: #00ffaa; border-left: 4px solid #00ffaa; }
+        .ancient { color: #996633; border-left: 4px solid #996633; }
+        .mythical { color: #ff9900; border-left: 4px solid #ff9900; }
+        button {
+            padding: 12px 25px;
+            border: none;
+            border-radius: 5px;
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: bold;
+        }
+        button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+        }
+        button:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+        .roll-button {
+            background-color: #4CAF50;
+            width: 100%;
+            font-size: 1.2em;
+            padding: 15px;
+        }
+        .roll-button:hover {
+            background-color: #45a049;
+        }
+        .roll-result {
+            margin-top: 10px;
+            padding: 15px;
+            background-color: #f8f8f8;
+            border-radius: 5px;
+            font-size: 1.1em;
+            text-align: center;
+        }
+        .leaderboard {
+            margin-top: 30px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="stats">
+            <div id="coins">Pièces: 0</div>
+            <div id="luck">Multiplicateur de chance: x1.0</div>
+        </div>
+        <div class="game-section">
+            <div>
+                <h3>Lancer</h3>
+                <button class="roll-button" onclick="roll()">Lancer le dé</button>
+                <div id="rollResult" class="roll-result">Dernier roll: -</div>
+            </div>
+        </div>
+        <div class="inventory">
+            <h3>Inventaire</h3>
+            <div id="inventory" class="inventory-grid"></div>
+        </div>
+        <div class="leaderboard">
+            <h3>Leaderboard</h3>
+            <table id="leaderboardTable">
+                <thead>
+                    <tr>
+                        <th>Nom</th>
+                        <th>Score</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>FeelsMan</td>
+                        <td>700</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script>
+        let gameState = {
+            coins: 0,
+            luckMultiplier: 1.0,
+            inventory: {},
+            items: {
+                // Common items
+                "Potion de Soin": { rarity: "common", baseChance: 0.2, value: 10, coins: 1 },
+                "Épée en Fer": { rarity: "common", baseChance: 0.2, value: 15, coins: 1 },
+                "Arc en Bois": { rarity: "common", baseChance: 0.1, value: 12, coins: 1 },
+                "Bouclier en Bois": { rarity: "common", baseChance: 0.1, value: 18, coins: 1 },
+
+                // Rare items
+                "Potion de Mana": { rarity: "rare", baseChance: 0.12, value: 30, coins: 2 },
+                "Épée en Acier": { rarity: "rare", baseChance: 0.1, value: 40, coins: 2 },
+                "Arc Elfique": { rarity: "rare", baseChance: 0.08, value: 35, coins: 2 },
+                "Grimoire de Sorcier": { rarity: "rare", baseChance: 0.07, value: 45, coins: 2 },
+
+                // Epic items
+                "Potion de Force": { rarity: "epic", baseChance: 0.05, value: 60, coins: 3 },
+                "Lame de Givre": { rarity: "epic", baseChance: 0.04, value: 70, coins: 3 },
+                "Arc du Chasseur": { rarity: "epic", baseChance: 0.03, value: 65, coins: 3 },
+                "Griffe du Tigre": { rarity: "epic", baseChance: 0.025, value: 80, coins: 3 },
+
+                // Mythic items
+                "Élixir des Dieux": { rarity: "mythic", baseChance: 0.025, value: 100, coins: 4 },
+                "Lame du Chaos": { rarity: "mythic", baseChance: 0.02, value: 120, coins: 4 },
+                "Arc du Phoenix": { rarity: "mythic", baseChance: 0.015, value: 110, coins: 4 },
+                "Bâton de Magie": { rarity: "mythic", baseChance: 0.012, value: 150, coins: 4 },
+
+                // Legendary items
+                "Potion d'Immortalité": { rarity: "legendary", baseChance: 0.008, value: 200, coins: 5 },
+                "Excalibur": { rarity: "legendary", baseChance: 0.007, value: 250, coins: 5 },
+                "Arc de Lumière": { rarity: "legendary", baseChance: 0.005, value: 220, coins: 5 },
+                "Aigle Royal": { rarity: "legendary", baseChance: 0.004, value: 300, coins: 5 },
+
+                // Divine items
+                "Bénédiction Céleste": { rarity: "divine", baseChance: 0.003, value: 500, coins: 6 },
+                "Lance de la Vérité": { rarity: "divine", baseChance: 0.0025, value: 600, coins: 6 },
+
+                // Celestial items
+                "Arc Astral": { rarity: "celestial", baseChance: 0.0012, value: 900, coins: 8 },
+
+                // Ancient items
+                "Arc du Tempête": { rarity: "ancient", baseChance: 0.01, value: 150, coins: 6 },
+                "Grimoire d'Ancien": { rarity: "ancient", baseChance: 0.008, value: 180, coins: 7 },
+
+                // Mythical items
+                "Amulette Mythique": { rarity: "mythical", baseChance: 0.004, value: 400, coins: 9 },
+                "Armure Divine": { rarity: "mythical", baseChance: 0.002, value: 500, coins: 10 }
+            }
+        };
+
+        function updateDisplay() {
+            document.getElementById('coins').textContent = `Pièces: ${gameState.coins}`;
+            document.getElementById('luck').textContent = `Multiplicateur de chance: x${gameState.luckMultiplier.toFixed(1)}`;
+            
+            let inventoryHtml = '';
+            const rarityOrder = ["celestial", "divine", "legendary", "mythic", "ancient", "epic", "rare", "common"];
+            
+            for (let rarity of rarityOrder) {
+                const items = Object.entries(gameState.inventory).filter(([item]) => 
+                    gameState.items[item].rarity === rarity
+                );
+                if (items.length > 0) {
+                    for (let [item, count] of items) {
+                        inventoryHtml += `
+                            <div class="inventory-item ${rarity}">
+                                ${item}<br>
+                                Quantité: ${count}<br>
+                                <small>Rareté: ${rarity}</small>
+                            </div>`;
+                    }
+                }
+            }
+            document.getElementById('inventory').innerHTML = inventoryHtml;
+        }
+
+        function roll() {
+            const rollValue = Math.random();
+            let cumulativeChance = 0;
+            let wonItem = null;
+
+            for (const [itemName, itemData] of Object.entries(gameState.items)) {
+                const adjustedChance = itemData.baseChance * gameState.luckMultiplier;
+                cumulativeChance += adjustedChance;
+
+                if (rollValue <= cumulativeChance) {
+                    wonItem = itemName;
+                    gameState.inventory[itemName] = (gameState.inventory[itemName] || 0) + 1;
+                    gameState.coins += itemData.coins;
+                    break;
+                }
+            }
+
+            const coinGain = gameState.items[wonItem].coins;
+            document.getElementById('rollResult').textContent = `Dernier roll: ${wonItem} (+${coinGain} pièces)`;
+            document.getElementById('rollResult').className = `roll-result ${gameState.items[wonItem].rarity}`;
+
+            updateDisplay();
+        }
+
+        updateDisplay();
+    </script>
+</body>
+</html>
