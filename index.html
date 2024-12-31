@@ -90,7 +90,7 @@
       const yearElement = document.getElementById('year');
       const messageElement = document.getElementById('message');
 
-      yearElement.textContent = "2025";
+      yearElement.textContent = "2026";
 
       // Ajouter l'animation des confettis
       createConfetti();
@@ -107,13 +107,13 @@
       const targetDate = new Date('2026-01-01T00:00:00');
 
       if (now >= targetDate) {
-        changeTo2025();
+        changeTo2026();
       } else {
         // Calculer le temps restant jusqu'à 2025
         const timeUntil2025 = targetDate - now;
 
         // Planifier le lancement de l'animation au bon moment
-        setTimeout(changeTo2025, timeUntil2025);
+        setTimeout(changeTo2026, timeUntil2026);
       }
     }
 
